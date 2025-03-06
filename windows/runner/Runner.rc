@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "smoesel_fighter" "\0"
+            VALUE "FileDescription", "smoesel_puncher" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "smoesel_fighter" "\0"
+            VALUE "InternalName", "smoesel_puncher" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "smoesel_fighter.exe" "\0"
-            VALUE "ProductName", "smoesel_fighter" "\0"
+            VALUE "OriginalFilename", "smoesel_puncher.exe" "\0"
+            VALUE "ProductName", "smoesel_puncher" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

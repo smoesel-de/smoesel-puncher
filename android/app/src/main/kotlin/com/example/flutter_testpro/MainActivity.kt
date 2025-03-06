@@ -1,4 +1,4 @@
-package com.example.smoesel_fighter
+package com.example.smoesel_puncher
 
 import io.flutter.embedding.android.FlutterActivity
 
