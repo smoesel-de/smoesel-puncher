@@ -1,6 +1,6 @@
-# SMOESEL Fighter
+# SMOESEL Puncher
 
-SMOESEL Fighter is a fun Flutter project where you can punch different characters and see their reactions. The project demonstrates various Flutter features including animations, gestures, and state management.
+SMOESEL Puncher is a fun Flutter project where you can punch different characters and see their reactions. The project demonstrates various Flutter features including animations, gestures, and state management.
 
 ## Features
 

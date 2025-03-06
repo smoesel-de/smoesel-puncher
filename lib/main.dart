@@ -15,7 +15,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'SMOESEL Punsher',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.yellow.shade700,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+          iconTheme: IconThemeData(color: Colors.black),
+        ),
       ),
       home: const MyHomePage(title: 'SMOESEL Punsher'),
       debugShowCheckedModeBanner: false,
@@ -87,8 +96,8 @@ class _MyHomePageState extends State<MyHomePage>
         "Mein Onkel ist der beste Vertriebler in Deutschland.",
         "Zählt da auch die Apple Watch?",
         "Ich habe ein Praktikum beim Frauenarzt gemacht.",
-        "Eine Studie zeigt, dass 90% der Frauen auf Muskeln stehen.",
         "Eine Studie zeigt ja, dass Frauen ...",
+        "Ich würde mich ja selber ficken",
       ],
     },
   };
@@ -165,94 +174,110 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          SizedBox(height: 100),
-          SpeechBubble(
-            child: Text(
-              _currentQuote,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
+      appBar: AppBar(title: Text(widget.title), centerTitle: true),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.yellow.shade100, Colors.yellow.shade300],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-          SizedBox(height: 20),
-          GestureDetector(
-            onTapDown: _punchFace,
-            child: Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                Image.asset(_currentFace, width: 500, height: 300),
-                if (_isPunched)
-                  Positioned(
-                    left: _tapPosition.dx,
-                    top: _tapPosition.dy - 62.5,
-                    child: SlideTransition(
-                      position: _animation,
-                      child: Image.asset(
-                        'assets/block.png',
-                        width: 367,
-                        height: 125,
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: 60),
+            SizedBox(
+              height: 100,
+              width: 500,
+              child: SpeechBubble(
+                child: Text(
+                  _currentQuote,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            GestureDetector(
+              onTapDown: _punchFace,
+              child: Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  Image.asset(_currentFace, width: 500, height: 300),
+                  if (_isPunched)
+                    Positioned(
+                      left: _tapPosition.dx,
+                      top: _tapPosition.dy - 62.5,
+                      child: SlideTransition(
+                        position: _animation,
+                        child: Image.asset(
+                          'assets/block.png',
+                          width: 367,
+                          height: 125,
+                        ),
                       ),
                     ),
-                  ),
-                if (_showPow)
-                  Positioned(
-                    left: _tapPosition.dx - 100,
-                    top: _tapPosition.dy - 100,
-                    child: Image.asset(
-                      'assets/pow.png',
-                      width: 200,
-                      height: 200,
+                  if (_showPow)
+                    Positioned(
+                      left: _tapPosition.dx - 100,
+                      top: _tapPosition.dy - 100,
+                      child: Image.asset(
+                        'assets/pow.png',
+                        width: 200,
+                        height: 200,
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 20),
-          Slider(
-            value: _punchSpeed,
-            min: 50,
-            max: 500,
-            divisions: 9,
-            label: "${_punchSpeed.toInt()} ms",
-            onChanged: (value) {
-              setState(() {
-                _punchSpeed = value;
-              });
-            },
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children:
-                _faces.keys.map((face) {
-                  return GestureDetector(
-                    onTap: () => _switchFace(face),
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color:
-                                  _currentFace == face
-                                      ? Colors.deepPurple
-                                      : Colors.transparent,
-                              width: 3,
+            SizedBox(height: 20),
+            Text(
+              'Punch Speed',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              width: 400,
+              child: Slider(
+                value: _punchSpeed,
+                min: 50,
+                max: 500,
+                divisions: 9,
+                label: "${_punchSpeed.toInt()} ms",
+                onChanged: (value) {
+                  setState(() {
+                    _punchSpeed = value;
+                  });
+                },
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:
+                  _faces.keys.map((face) {
+                    return GestureDetector(
+                      onTap: () => _switchFace(face),
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color:
+                                    _currentFace == face
+                                        ? Colors.yellow.shade700
+                                        : Colors.transparent,
+                                width: 3,
+                              ),
                             ),
+                            child: Image.asset(face, width: 80, height: 80),
                           ),
-                          child: Image.asset(face, width: 80, height: 80),
-                        ),
-                        Text(_faces[face]!['name']),
-                      ],
-                    ),
-                  );
-                }).toList(),
-          ),
-        ],
+                          Text(_faces[face]!['name']),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -266,11 +291,11 @@ class SpeechBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(15),
       margin: EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
             color: Colors.black26,
@@ -279,7 +304,7 @@ class SpeechBubble extends StatelessWidget {
           ),
         ],
       ),
-      child: child,
+      child: Center(child: child),
     );
   }
 }

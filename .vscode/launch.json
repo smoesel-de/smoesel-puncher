@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "smoesel_fighter",
+            "name": "smoesel_puncher",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "smoesel_fighter (profile mode)",
+            "name": "smoesel_puncher (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "smoesel_fighter (release mode)",
+            "name": "smoesel_puncher (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
