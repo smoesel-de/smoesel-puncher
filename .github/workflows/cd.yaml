@@ -47,7 +47,7 @@ jobs:
                   flutter build apk --split-per-abi
                   flutter build apk
             - name: Build web app
-              run: flutter build web --web-renderer=canvaskit
+              run: flutter build web
             - name: Push tag
               uses: anothrNick/github-tag-action@1.36.0
               env:
